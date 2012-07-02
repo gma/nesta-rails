@@ -1,0 +1,2 @@
+module NestaRails
+end
