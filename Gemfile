@@ -16,6 +16,7 @@ gem "jquery-rails"
 # To use debugger
 # gem 'debugger'
 
-group :development do
+group :test do
+  gem 'capybara'
   gem 'turn'
 end

@@ -1,2 +1,4 @@
-module NestaRails
+module Nesta
+  module Rails
+  end
 end
