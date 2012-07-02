@@ -7,11 +7,17 @@ require "nesta-rails/version"
 Gem::Specification.new do |s|
   s.name        = "nesta-rails"
   s.version     = NestaRails::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of NestaRails."
-  s.description = "TODO: Description of NestaRails."
+  s.authors     = ['Graham Ashton']
+  s.email       = ['graham@effectif.com']
+  s.homepage    = 'TODO'
+  s.summary     = 'A Rails plugin for using Nesta CMS in Rails'
+  s.description =<<-EOF
+nesta-rails is a Rails plugin that seamlessly integrates Nesta CMS into
+your Rails application. Rather than mounting Nesta as a Rack application
+alongside your Rails application, it replaces Nesta's Sinatra actions
+with a Rails controller that uses Nesta's library code to render the
+files in your content/pages directory.
+  EOF
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
