@@ -8,7 +8,7 @@ ENV['NESTA_SUBTITLE'] = 'Configure your subtitle'
 #
 # ENV['NESTA_GOOGLE_ANALYTICS_CODE'] = 'UA-???'
 #
-# ENV['NESTA_DISQUS_SHORT_NAME'] = 'theagileplanner'
+# ENV['NESTA_DISQUS_SHORT_NAME'] = ''
 
 require 'sass/util'
 
