@@ -6,9 +6,8 @@ ENV['NESTA_SUBTITLE'] = 'Configure your subtitle'
 # ENV['NESTA_AUTHOR__URI'] = ''
 # ENV['NESTA_AUTHOR__EMAIL'] = ''
 #
-# ENV['NESTA_GOOGLE_ANALYTICS_CODE'] = 'UA-???'
-#
 # ENV['NESTA_DISQUS_SHORT_NAME'] = ''
+# ENV['NESTA_GOOGLE_ANALYTICS_CODE'] = ''
 
 require 'sass/util'
 
