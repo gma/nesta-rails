@@ -1,4 +1,10 @@
 Dummy::Application.routes.draw do
+  match 'articles.xml' => 'nesta#feed'
+
+  match 'sitemap.xml' => 'nesta#sitemap'
+
+  mount NestaController.action(:show), :at => '/'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
