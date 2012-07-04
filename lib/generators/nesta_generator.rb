@@ -45,18 +45,18 @@ class NestaController < ApplicationController
     render :action => @page.template
   end
 
-  # def feed
-    # @articles = Nesta::Page.find_articles.select { |a| a.date }[0..9]
-    # render :atom, :content_type => :xml, :layout => false
-  # end
+  def feed
+    @articles = Nesta::Page.find_articles.select { |a| a.date }[0..9]
+    render :atom, :content_type => :xml, :layout => false
+  end
 
-  # def sitemap
-    # @pages = Nesta::Page.find_all
-    # @last = @pages.map { |page| page.last_modified }.inject do |latest, page|
-      # (page > latest) ? page : latest
-    # end
-    # render :sitemap, :content_type => :xml, :layout => false
-  # end
+  def sitemap
+    @pages = Nesta::Page.find_all
+    @last = @pages.map { |page| page.last_modified }.inject do |latest, page|
+      (page > latest) ? page : latest
+    end
+    render :sitemap, :content_type => :xml, :layout => false
+  end
 end
     EOF
   end
@@ -85,9 +85,54 @@ end
     EOF
   end
 
-  def create_page_templates
-    create_file 'app/views/nesta/page.html.haml', <<-EOF
+  def create_templates
+    create_file 'app/views/nesta/page.html.haml', <<-'EOF'
 ~ @page.to_html(self).html_safe
+    EOF
+
+    create_file 'app/views/nesta/atom.haml', <<-'EOF'
+!!! XML
+%feed(xmlns='http://www.w3.org/2005/Atom')
+  %title(type='text')= @title
+  %generator(uri='http://nestacms.com') Nesta
+  %id= atom_id
+  %link(href="#{path_to('/articles.xml')}" rel='self')
+  %link(href="#{path_to('/')}" rel='alternate')
+  %subtitle(type='text')= @subtitle
+  - if @articles[0]
+    %updated= @articles[0].date(:xmlschema)
+  - if @author
+    %author
+      - if @author['name']
+        %name= @author['name']
+      - if @author['uri']
+        %uri= @author['uri']
+      - if @author['email']
+        %email= @author['email']
+  - @articles.each do |article|
+    %entry
+      %title= article.heading
+      %link{ :href => path_to(article.path), :type => 'text/html', :rel => 'alternate' }
+      %id= atom_id(article)
+      %content(type='html')&= permit_html_escape(find_and_preserve(absolute_urls(article.body(self))))
+      %published= article.date(:xmlschema)
+      %updated= article.date(:xmlschema)
+      - article.categories.each do |category|
+        %category{ :term => category.permalink }
+    EOF
+
+    create_file 'app/views/nesta/sitemap.haml', <<-'EOF'
+!!! XML
+%urlset(xmlns="http://www.sitemaps.org/schemas/sitemap/0.9")
+  %url
+    %loc= path_to('/')
+    %changefreq daily
+    %priority 1.0
+    %lastmod= @last.xmlschema
+  - @pages.each do |page|
+    %url
+      %loc= path_to(page.path)
+      %lastmod= page.last_modified.xmlschema
     EOF
   end
 

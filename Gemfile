@@ -5,6 +5,7 @@ source "http://rubygems.org"
 # development dependencies will be added by default to the :development group.
 gemspec
 
+gem 'nesta', :git => 'git://github.com/gma/nesta.git'
 gem 'psych'
 
 # jquery-rails is used by the dummy application
