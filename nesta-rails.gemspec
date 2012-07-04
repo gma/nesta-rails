@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = NestaRails::VERSION
   s.authors     = ['Graham Ashton']
   s.email       = ['graham@effectif.com']
-  s.homepage    = 'TODO'
+  s.homepage    = 'http://nestacms.com'
   s.summary     = 'A Rails plugin for using Nesta CMS in Rails'
   s.description =<<-EOF
 nesta-rails is a Rails plugin that seamlessly integrates Nesta CMS into
@@ -19,7 +19,7 @@ with a Rails controller that uses Nesta's library code to render the
 files in your content/pages directory.
   EOF
 
-  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
+  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency "nesta", "~> 0.9.13"
