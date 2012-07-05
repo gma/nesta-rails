@@ -10,7 +10,14 @@ files in your content/pages directory.
 Installation
 ------------
 
-Add `nesta-rails` to your Rails app's Gemfile and re-bundle your app:
+A couple of Nesta's view helper methods have been renamed to avoid
+conflicts with Rails's own, so until Nesta 0.10.0 is released you'll
+need to use the development version of Nesta from GitHub. Update your
+Gemfile like this:
+
+    gem "nesta", :git => "https://github.com/gma/nesta.git"
+
+Then add `nesta-rails` to your Rails app's Gemfile and re-bundle your app:
 
     $ echo 'gem "nesta-rails"' >> Gemfile
     $ bundle
