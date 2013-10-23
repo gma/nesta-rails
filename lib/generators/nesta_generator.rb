@@ -95,8 +95,8 @@ end
   %title(type='text')= @title
   %generator(uri='http://nestacms.com') Nesta
   %id= atom_id
-  %link(href="#{path_to('/articles.xml')}" rel='self')
-  %link(href="#{path_to('/')}" rel='alternate')
+  %link(href="#{path_to('/articles.xml', :uri => true)}" rel='self')
+  %link(href="#{path_to('/', :uri => true)}" rel='alternate')
   %subtitle(type='text')= @subtitle
   - if @articles[0]
     %updated= @articles[0].date(:xmlschema)
@@ -111,7 +111,7 @@ end
   - @articles.each do |article|
     %entry
       %title= article.heading
-      %link{ :href => path_to(article.path), :type => 'text/html', :rel => 'alternate' }
+      %link{ :href => path_to(article.path, :uri => true), :type => 'text/html', :rel => 'alternate' }
       %id= atom_id(article)
       %content(type='html')&= permit_html_escape(find_and_preserve(absolute_urls(article.body(self))))
       %published= article.date(:xmlschema)
@@ -124,13 +124,13 @@ end
 !!! XML
 %urlset(xmlns="http://www.sitemaps.org/schemas/sitemap/0.9")
   %url
-    %loc= path_to('/')
+    %loc= path_to('/', :uri => true)
     %changefreq daily
     %priority 1.0
     %lastmod= @last.xmlschema
   - @pages.each do |page|
     %url
-      %loc= path_to(page.path)
+      %loc= path_to(page.path, :uri => true)
       %lastmod= page.last_modified.xmlschema
     EOF
   end
