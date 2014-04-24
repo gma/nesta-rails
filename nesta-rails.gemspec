@@ -20,4 +20,6 @@ using nesta-rails is a cleaner approach.
   gem.name          = "nesta-rails"
   gem.require_paths = ["lib"]
   gem.version       = Nesta::Rails::VERSION
+
+  gem.add_dependency('nesta', '>= 0.9.13')
 end
