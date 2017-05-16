@@ -13,7 +13,7 @@ GIT
 PATH
   remote: .
   specs:
-    nesta-rails (0.0.3)
+    nesta-rails (0.1.0)
       nesta (>= 0.10.0)
       rails (>= 4.0)
 
