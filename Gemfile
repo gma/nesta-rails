@@ -17,7 +17,7 @@ gem 'jquery-rails'
 # your gem to rubygems.org.
 
 # To use debugger
-gem 'debugger'
+gem 'byebug'
 
 group :test do
   gem 'capybara'
